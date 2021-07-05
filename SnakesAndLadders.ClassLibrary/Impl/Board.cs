@@ -4,27 +4,35 @@ using System.Linq;
 using System.Text;
 using SnakesAndLadders.ClassLibrary.Configs;
 using SnakesAndLadders.ClassLibrary.Contracts;
+using SnakesAndLadders.ClassLibrary.Enums;
 
 namespace SnakesAndLadders.ClassLibrary.Impl
 {
     public class Board : IBoard
     {
 
-        public IDice Dice { get; set; }
+        public IDice _dice { get; set; }
         public List<Token> TokenPlayers { get; set; } = new List<Token>();
         public BoardConfig BoardConfig { get; set; }
-        public Token? Winner { get; set; }
+        public Token? Winner
+        {
+            get
+            {
+                return this.TokenPlayers.FirstOrDefault(p => p.CurrentPosition == this.BoardConfig.LastPosition);
+            }
+        }
+        
 
         public Board(IDice dice)
         {
-            this.Dice = dice;
+            _dice = dice;
         }
 
         public void InitializeNewGame(List<Token> players, DiceConfig diceConfig, BoardConfig boardConfig)
         {
             this.BoardConfig = boardConfig;
 
-            this.Dice = new Dice(diceConfig);
+            _dice = new Dice(diceConfig);
 
             if (!players.Any() || players.Count() < 2)
             {
@@ -42,10 +50,14 @@ namespace SnakesAndLadders.ClassLibrary.Impl
         {
             return player.CurrentPosition == this.BoardConfig.LastPosition;
         }
-        public void PlayerMovement(Token player)
+        public GameStatus PlayerMovement(Token player)
         {
-            var movements = Dice.Roll();
+            var movements = _dice.Roll();
             player.Movement(movements, this.BoardConfig.LastPosition);
+            return HasWon(player) ? GameStatus.Finished : GameStatus.InProgress;
+            
         }
+
+
     }
 }
