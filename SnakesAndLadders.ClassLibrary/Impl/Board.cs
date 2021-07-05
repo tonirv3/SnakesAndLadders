@@ -36,7 +36,7 @@ namespace SnakesAndLadders.ClassLibrary.Impl
 
             if (!players.Any() || players.Count() < 2)
             {
-                throw new ArgumentException("To initialize the game players must contains at least 2 items ");
+                throw new ArgumentException("2 or more players are required to start the game");
             }
 
             foreach (var player in players)
