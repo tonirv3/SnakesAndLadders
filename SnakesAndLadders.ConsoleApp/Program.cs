@@ -1,11 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SnakesAndLadders.ClassLibrary.Contracts;
-using SnakesAndLadders.ClassLibrary.Impl;
+﻿using SnakesAndLadders.ClassLibrary.Contracts;
 using SnakesAndLadders.ClassLibrary.Enums;
+using SnakesAndLadders.ClassLibrary.Impl;
 using System;
 using System.Collections.Generic;
-using SnakesAndLadders.ClassLibrary.Configs;
 
 namespace SnakesAndLadders.ConsoleApp
 {
