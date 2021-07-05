@@ -32,7 +32,7 @@ namespace SnakesAndLadders.ClassLibrary.Impl
         {
             this.BoardConfig = boardConfig;
 
-            _dice = new Dice(diceConfig);
+            _dice.AddConfig(diceConfig);
 
             if (!players.Any() || players.Count() < 2)
             {

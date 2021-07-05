@@ -8,18 +8,23 @@ namespace SnakesAndLadders.ClassLibrary.Impl
     {
         public DiceConfig Config { get; set; }
 
-        public Dice(DiceConfig config)
+        public Dice()
         {
-            if (config is null)
-                throw new ArgumentNullException();
+            //if (config is null)
+            //    throw new ArgumentNullException();
 
 
-            this.Config = config;
+            //this.Config = config;
         }
 
         public int Roll()
         {
             return new Random().Next(Config.MinValue, Config.MaxValue);
+        }
+
+        public void AddConfig(DiceConfig diceConfig)
+        {
+            this.Config = diceConfig;
         }
     }
 }

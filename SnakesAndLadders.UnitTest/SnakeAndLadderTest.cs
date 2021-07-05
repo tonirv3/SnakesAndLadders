@@ -130,7 +130,8 @@ namespace SnakesAndLadders.UnitTest
         public void WhenThePlayerRollsADice_ThenTheResultShouldBeBetween1And6(short minValue, short maxValue)
         {
             var diceConfig = new DiceConfig(minValue, maxValue);
-            var dice = new Dice(diceConfig);
+            var dice = new Dice();
+            dice.AddConfig(diceConfig);
 
             Assert.IsTrue(dice.Roll() >= minValue);
             Assert.IsTrue(dice.Roll() <= maxValue);
